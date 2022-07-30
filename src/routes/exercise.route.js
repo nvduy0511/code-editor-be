@@ -7,4 +7,6 @@ router.post('/', exerciseController.createOrUpdate);
 
 router.delete('/', exerciseController.delete);
 
+router.get('/get-all', exerciseController.getAll);
+
 module.exports = router;

@@ -18,6 +18,11 @@ class DoExerciseController {
         const result = await DoExerciseModel.deleteOne({ _id: _id });
         res.json(result);
     }
+
+    async getAll(req, res) {
+        const result = await DoExerciseModel.find();
+        res.json(result);
+    }
 }
 
 module.exports = new DoExerciseController();
