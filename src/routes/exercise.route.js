@@ -9,4 +9,6 @@ router.delete('/', exerciseController.delete);
 
 router.get('/get-all', exerciseController.getAll);
 
+router.get('/get-length', exerciseController.getLength);
+
 module.exports = router;

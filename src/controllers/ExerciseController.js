@@ -1,6 +1,4 @@
-const ExerciseModel = require('../models/ExerciseModel');
-const { findByIdAndUpdate } = require('../models/ExerciseModel');
-const exerciseModel = require('../models/ExerciseModel');
+const exerciseModel = require('../models/exerciseModel');
 
 class ExerciseController {
     async createOrUpdate(req, res) {
@@ -17,12 +15,21 @@ class ExerciseController {
     }
     async delete(req, res) {
         const _id = req.query._id;
-        const result = await ExerciseModel.deleteOne({ _id: _id });
+        const result = await exerciseModel.deleteOne({ _id: _id });
         res.json(result);
+    }
+    async getLength(req, res) {
+        const result = await exerciseModel.count();
+        res.json({ length: result });
     }
 
     async getAll(req, res) {
-        const result = await ExerciseModel.find();
+        const { page, limit } = req.query;
+
+        const result = await exerciseModel
+            .find()
+            .skip((page - 1) * limit)
+            .limit(limit);
         res.json(result);
     }
 }
