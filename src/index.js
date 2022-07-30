@@ -19,13 +19,13 @@ app.use('/api/', routerApi);
 
 var server = require('http').createServer(app);
 
-server.listen(port, () => {
-    console.log(`App listening on port ${port}`);
-});
-
-// mongodb
-//     .config()
-//     .then(() => {})
-//     .catch((err) => {
-//         console.log(err);
-//     });
+mongodb
+    .config()
+    .then(() => {
+        server.listen(port, () => {
+            console.log(`App listening on port ${port}`);
+        });
+    })
+    .catch((err) => {
+        console.log(err);
+    });
