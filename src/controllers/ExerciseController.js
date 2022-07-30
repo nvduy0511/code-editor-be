@@ -1,4 +1,4 @@
-const exerciseModel = require('../models/exerciseModel');
+const exerciseModel = require('../models/ExerciseModel');
 
 class ExerciseController {
     async createOrUpdate(req, res) {
