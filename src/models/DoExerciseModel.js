@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const schema = new mongoose.Schema({
     idUser: { type: String, ref: 'User' },
@@ -10,4 +10,4 @@ const schema = new mongoose.Schema({
     language: String,
 });
 
-module.exports = mongoose.model('DoExercise', schema);
+export default mongoose.model('doExercises', schema);

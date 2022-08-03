@@ -1,11 +1,13 @@
-const DoExerciseModel = require('../models/DoExerciseModel');
+import DoExerciseModel from '../models/DoExerciseModel';
 
 class DoExerciseController {
     async createOrUpdate(req, res) {
         const { _id, ...doExercise } = req.body;
         if (_id) {
             //update
-            const result = await DoExerciseModel.findByIdAndUpdate(_id, { ...doExercise });
+            const result = await DoExerciseModel.findByIdAndUpdate(_id, {
+                ...doExercise,
+            });
             res.json(result);
         } else {
             //create
@@ -25,4 +27,4 @@ class DoExerciseController {
     }
 }
 
-module.exports = new DoExerciseController();
+export default new DoExerciseController();

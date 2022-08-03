@@ -1,6 +1,6 @@
-const express = require('express');
+import express from 'express';
+import doExerciseController from '../controllers/DoExerciseController';
 const router = express.Router();
-const doExerciseController = require('../controllers/DoExerciseController');
 
 router.post('/', doExerciseController.createOrUpdate);
 
@@ -8,4 +8,4 @@ router.delete('/', doExerciseController.delete);
 
 router.get('/get-all', doExerciseController.getAll);
 
-module.exports = router;
+export default router;

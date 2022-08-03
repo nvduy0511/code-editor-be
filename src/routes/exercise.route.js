@@ -1,7 +1,6 @@
-const express = require('express');
+import express from 'express';
+import exerciseController from '../controllers/ExerciseController';
 const router = express.Router();
-
-const exerciseController = require('../controllers/ExerciseController');
 
 router.post('/', exerciseController.createOrUpdate);
 
@@ -11,4 +10,4 @@ router.get('/get-all', exerciseController.getAll);
 
 router.get('/get-length', exerciseController.getLength);
 
-module.exports = router;
+export default router;

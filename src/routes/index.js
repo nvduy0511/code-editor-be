@@ -1,9 +1,9 @@
-const express = require('express');
+import express from 'express';
+import compileCodeRoute from './compile-code.route';
+import userRoute from './user.route';
+import doExerciseRoute from './do-exercise.route';
+import exerciseRoute from './exercise.route';
 const router = express.Router();
-const compileCodeRoute = require('./compile-code.route');
-const userRoute = require('./user.route');
-const doExerciseRoute = require('./do-exercise.route');
-const exerciseRoute = require('./exercise.route');
 
 router.use('/compile-code', compileCodeRoute);
 
@@ -13,4 +13,4 @@ router.use('/do-exercise', doExerciseRoute);
 
 router.use('/exercise', exerciseRoute);
 
-module.exports = router;
+export default router;

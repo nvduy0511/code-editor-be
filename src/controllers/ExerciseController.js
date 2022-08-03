@@ -1,4 +1,4 @@
-const exerciseModel = require('../models/ExerciseModel');
+import exerciseModel from '../models/ExerciseModel';
 
 class ExerciseController {
     async createOrUpdate(req, res) {
@@ -34,4 +34,4 @@ class ExerciseController {
     }
 }
 
-module.exports = new ExerciseController();
+export default new ExerciseController();

@@ -1,5 +1,5 @@
-var axios = require('axios');
-var qs = require('qs');
+import axios from 'axios';
+import qs from 'qs';
 
 class CompileCodeController {
     async compileCode(reqCode) {
@@ -34,7 +34,9 @@ class CompileCodeController {
             .then((values) => {
                 res.json(
                     values.map((item) => {
-                        return item.status === 'fulfilled' ? item.value.data : item.reason;
+                        return item.status === 'fulfilled'
+                            ? item.value.data
+                            : item.reason;
                     }),
                 );
             })
@@ -43,4 +45,4 @@ class CompileCodeController {
             });
     };
 }
-module.exports = new CompileCodeController();
+export default new CompileCodeController();
