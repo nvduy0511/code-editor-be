@@ -29,10 +29,26 @@ const resolversExercise = {
 
     // MUTATION
     Mutation: {
-        // createAuthor: async (parent, args, { mongoDataMethods }) =>
-        //     await mongoDataMethods.createAuthor(args),
-        // createBook: async (parent, args, { mongoDataMethods }) =>
-        //     await mongoDataMethods.createBook(args),
+        createExercise: async (parent, data, { models: { Exercise, TestCase }, authValidation }) => {
+            authValidation.ensureThatUserIsLogged(context); //check user login
+
+            const { testCases, ...exercise_insert } = data;
+            try {
+                const exercise = new Exercise(exercise_insert);
+
+                await exercise.save();
+                testCases.forEach((testcase) => {
+                    const testCase = new TestCase({
+                        ...testcase,
+                        idExercise: exercise._id,
+                    });
+                    testCase.save();
+                });
+            } catch (error) {
+                return false;
+            }
+            return true;
+        },
     },
 };
 
