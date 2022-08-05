@@ -1,7 +1,7 @@
 import { gql } from 'apollo-server-express';
 const typeDefs = gql`
     type Exercise {
-        id: ID!
+        _id: ID!
         level: String
         title: String
         question: String
@@ -15,11 +15,11 @@ const typeDefs = gql`
         testCases: [TestCase]
     }
     type TestCase {
-        id: ID!
+        _id: ID!
         value: Int
     }
     type DoExercise {
-        id: ID!
+        _id: ID!
         exercise: Exercise
         testCasePass: Int
         code: String
@@ -27,32 +27,27 @@ const typeDefs = gql`
         language: String
     }
     type User {
-        id: ID!
+        _id: ID!
         displayName: String
         email: String
-        photoURL: String
+        photoUrl: String
+        token: String
     }
     # ROOT TYPE
     type Query {
         exercises: [Exercise]
-        exercise(id: ID!): Exercise
+        exercise(_id: ID!): Exercise
         user: User
         doExercise: DoExercise
     }
     type Mutation {
-        createUser(displayName: String, email: String, photoURL: String): User
-        # createExercise(
-        #     level: String
-        #     title: String
-        #     question: String
-        #     constraint: String
-        #     inputFormat: String
-        #     outputFormat: String
-        #     tag: String
-        #     numberOfSuccess: Int
-        #     numberOfDoExercise: Int
-        #     imgLink: String
-        # ): Exercise
+        createUser(displayName: String, email: String, photoUrl: String): User
+        loginOrCreate(
+            _id: String
+            displayName: String
+            email: String
+            photoUrl: String
+        ): User
     }
 `;
 

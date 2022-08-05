@@ -7,6 +7,7 @@ import mongodb from './configs/mongodb.config';
 import dotenv from 'dotenv';
 import typeDefs from './gql/types';
 import resolvers from './gql/resolver';
+import setContext from './gql/auth/setContext';
 
 dotenv.config();
 const app = express();
@@ -23,17 +24,18 @@ app.get('/', (req, res) => {
 
 app.use('/api/', routerApi);
 
-// var server = require('http').createServer(app);
-
 let server_grapql = null;
 async function startServer() {
     server_grapql = new ApolloServer({
         typeDefs,
         resolvers,
+        context: setContext,
     });
     await server_grapql.start();
     server_grapql.applyMiddleware({ app });
+    console.log('start apolo server');
 }
+
 startServer();
 
 mongodb

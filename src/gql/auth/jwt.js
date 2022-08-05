@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 
-import { securityVariablesConfig } from '../../config/appConfig.js';
+import { securityVariablesConfig } from '../../configs/appConfig.js';
 
 /**
  * Create a new JSON Web Token
@@ -10,8 +10,11 @@ import { securityVariablesConfig } from '../../config/appConfig.js';
  * @param {string}	uuid		- An uuid token
  * @returns	{string}			- Json Web Token
  */
-export const createAuthToken = (email, isAdmin, isActive, uuid) => {
-	return jwt.sign({ email, isAdmin, isActive, uuid }, securityVariablesConfig.secret, { expiresIn: securityVariablesConfig.timeExpiration });
+export const createAuthToken = (user) => {
+    console.log('jwt', user);
+    return jwt.sign(user, securityVariablesConfig.secret, {
+        expiresIn: securityVariablesConfig.timeExpiration,
+    });
 };
 
 /**
@@ -20,6 +23,6 @@ export const createAuthToken = (email, isAdmin, isActive, uuid) => {
  * @returns {Object}		- User data retrieved from payload
  */
 export const validateAuthToken = async (token) => {
-	const user = await jwt.verify(token, securityVariablesConfig.secret);
-	return user;
+    const user = await jwt.verify(token, securityVariablesConfig.secret);
+    return user;
 };
